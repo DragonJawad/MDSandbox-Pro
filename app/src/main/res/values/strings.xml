@@ -1,0 +1,19 @@
+<resources>
+    <!-- General -->
+    <string name="app_name">MDSandbox Pro</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="name_first">First Name</string>
+    <string name="name_last">Last Name</string>
+    <string name="submit">Submit</string>
+
+    <!-- Activity Titles & Co -->
+    <string name="activity_login">Login</string>
+
+    <!-- Login Strings -->
+    <string name="login_new_user">New User</string>
+    <string name="login_intro_welcome">No account?\nLet\'s fix that!</string>
+    <string name="login_new_user_info_request">Please tell us about you!</string>
+    <string name="login_opt_out_password">Check this box if you do NOT want to use a PASSWORD</string>
+</resources>
