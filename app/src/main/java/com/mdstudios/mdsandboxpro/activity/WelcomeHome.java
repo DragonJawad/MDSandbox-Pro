@@ -2,8 +2,10 @@ package com.mdstudios.mdsandboxpro.activity;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mdstudios.mdsandboxpro.R;
 
@@ -22,7 +24,12 @@ public class WelcomeHome extends ListActivity {
 
     }
 
-    // Make a new user
+    // Launch activity to create a new user
         // Activated via UI button
-    public void newUser(View view){}
+    public void newUser(View view){
+        Toast.makeText(this,"Making a new user!",Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, NewUser.class);
+        startActivity(intent);
+    }
 }

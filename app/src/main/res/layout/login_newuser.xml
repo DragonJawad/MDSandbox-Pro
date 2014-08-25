@@ -53,6 +53,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="A-Z,a-z,-,_"
+                android:imeOptions="flagNoExtractUi"
+                android:singleLine="true"
                 />
 
         </LinearLayout>
@@ -78,6 +80,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="A-Z,a-z,-,_"
+                android:imeOptions="flagNoExtractUi"
+                android:singleLine="true"
                 />
 
         </LinearLayout>
@@ -111,6 +115,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="A-Z,a-z,-,_"
+                android:imeOptions="flagNoExtractUi"
+                android:singleLine="true"
                 />
 
         </LinearLayout>
@@ -136,6 +142,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="A-Z,a-z,-,_"
+                android:imeOptions="flagNoExtractUi"
+                android:singleLine="true"
                 />
 
         </LinearLayout>
@@ -155,6 +163,7 @@
 
     <Button
         android:id="@+id/buttonSubmit"
+        android:onClick="submit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
