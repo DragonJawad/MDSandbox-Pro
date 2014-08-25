@@ -16,4 +16,9 @@
     <string name="login_intro_welcome">No account?\nLet\'s fix that!</string>
     <string name="login_new_user_info_request">Please tell us about you!</string>
     <string name="login_opt_out_password">Check this box if you do NOT want to use a PASSWORD</string>
+
+    <!-- Form Strings -->
+    <string name="error_blank">Field cannot be blank</string>
+    <string name="error_invalid_name">Allowed characters: A-Z a-z 0-9 . _ - and space</string>
+    <string name="error_invalid_userpass">Allowed characters: A-Z a-z 0-9 . _</string>
 </resources>
