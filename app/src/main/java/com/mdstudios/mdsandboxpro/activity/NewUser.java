@@ -1,6 +1,7 @@
 package com.mdstudios.mdsandboxpro.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -22,7 +23,7 @@ public class NewUser extends Activity {
     private final String LOGTAG = Base.TAG_BASE+"NewUser";
 
     // User database instance
-    DbUsers db = new DbUsers(this);
+    DbUsers db;
 
     // Respective form fields
     private EditText mFirstName;
@@ -44,6 +45,9 @@ public class NewUser extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_newuser);
+
+        // Initialize the database
+        db = new DbUsers(this);
 
         initViews(); // Initialize views
         initForm(); // Initialize form
@@ -83,8 +87,6 @@ public class NewUser extends Activity {
 
     //--Activated by UI button, attempts to submit data--
     public void onSubmit(View view){
-        Toast.makeText(this,"Not enabled yet",Toast.LENGTH_SHORT).show();
-
         /** Steps needed:
          *  1) Check user input for valid characters
          *  2) Check for duplicate username
@@ -110,14 +112,12 @@ public class NewUser extends Activity {
         if(db.checkIfUserExists(mUsername.getText().toString())){
             // Tell the user that the username is in use
             mForm.invalidateFieldByTag(TAG_USERNAME,
-                    getResources().getString(R.string.error_duplicate_username));
-
+                   getResources().getString(R.string.error_duplicate_username));
             // Close database, else the world will end... eventually
             db.close();
 
             return;
         }
-
 
         // If skipping password, make sure to pass in null
             // TODO: TEST IF NULL WORKS AS EXPECTED IN DATABASE
@@ -137,7 +137,13 @@ public class NewUser extends Activity {
 
         // Make sure to close the database
         db.close();
+
+        // TODO: Finish off the below, of course- It be temporary ;3
+        Toast.makeText(this, "Successfully added user!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, WelcomeHome.class);
+        startActivity(intent);
     }
+
 
     //--Update state of the password field, based off of mUsePassword variable--
     public void updatePasswordField(){
@@ -151,5 +157,6 @@ public class NewUser extends Activity {
             mPassword.setEnabled(false);
             mPassword.setBackgroundColor(getResources().getColor(R.color.gray));
         }
+
     }
 }
