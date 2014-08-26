@@ -157,7 +157,7 @@
         android:onClick="onCheckboxClicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_opt_out_password"
+        android:text="@string/login_opt_password"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:background="@color/white"/>

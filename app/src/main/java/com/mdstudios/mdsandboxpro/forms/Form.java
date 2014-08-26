@@ -15,10 +15,11 @@ import java.util.List;
  *
  * Purpose: Manages all fields associated with a single "form"
  *
+ * TODO: Implement tag system on fields+forms
  */
 public class Form {
     // Log constant
-    private final String TAG = Base.TAG_BASE+"Form";
+    private final String LOGTAG = Base.TAG_BASE+"Form";
 
     // Validation mode constants
     public static final int VALID_NAME = 1;
@@ -45,23 +46,57 @@ public class Form {
 
         // Create the field and set its parameters
         Field field = new Field(editText, validationMode);
+
         // Add to the form's list of fields to manage
         mFields.add(field);
+    }
+
+    //--Adds a new field to this form, including with an optional tag--
+    public void addField(EditText editText, int validationMode, String tag){
+
+        // Create the field and set its parameters
+        Field field = new Field(editText, validationMode, tag);
+
+        // Add to the form's list of fields to manage
+        mFields.add(field);
+    }
+
+    //--Shows an error for a field found by tag--
+    public void invalidateFieldByTag(String tag, String displayError){
+        // Search through all the fields for the matching tag
+        for(Field field : mFields){
+            // If the tag matches, display the error than break
+            if(field.getTag().equals(tag)){
+                field.setError(displayError);
+                break;
+            }
+        }
     }
 
     /**--Validates each field one by one--
     *  -> Returns true if all valid, false if at least one is false
     *  -> Tells each failed EditText to show error on itself
+     *
+     *  @param tagToSkip Optional param [default = null], choose to skip a tag or not
+     *                   TODO: Implement with multiple optional tags, or method without it at least
      */
-    public boolean validateAllFields(){
+    public boolean validateAllFields(String tagToSkip){
         // Determines whether or not all fields are valid
         boolean valid = true;
 
         // Loops through all fields and validates one by one
         for(Field field : mFields){
-            // Get the field input and validation mode
+            // Get the field's variables
             String input = field.getFieldInput();
+            String tag = field.getTag();
             int validMode = field.getValidMode();
+
+            // If valid, check if tag is the one to skip
+            if(tagToSkip != null && tag != null){
+                // If this field's tag is the one to skip, skip to the next field to validate
+                if(tag.equals(tagToSkip))
+                    continue;
+            }
 
             // Check if field is blank first
             if(input.equals("")){
@@ -106,7 +141,7 @@ public class Form {
                 valid = Validation.isUsernameOrPass(text);
                 break;
             default:
-                Log.e(TAG,"Invalid Mode: "+validMode);
+                Log.e(LOGTAG,"Invalid Mode: "+validMode);
                 break;
         }
 

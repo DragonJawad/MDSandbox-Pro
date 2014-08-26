@@ -1,6 +1,8 @@
 package com.mdstudios.mdsandboxpro.users;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -75,9 +77,43 @@ public class DbUsers {
         return this;
     }
 
+    //--Closes the database--
     public void close() {
         mDbHelper.close();
     }
 
+    //--Add a user to the database, returns id of row--
+    public long insertUser(String username, String password, String firstName, String lastName){
+        ContentValues values = new ContentValues();
+
+        // Insert values in key:value format
+        values.put(KEY_USERNAME,username);
+        values.put(KEY_PASSWORD,password);
+        values.put(KEY_FIRSTNAME,firstName);
+        values.put(KEY_LASTNAME,lastName);
+
+        // Finally add the values to the database itself and return the id
+        return mDb.insert(DATABASE_TABLE, null, values);
+    }
+
+    //--Check if a user exists in the database--
+    public boolean checkIfUserExists(String username){
+        // equivalent: "SELECT * FROM table WHERE key_username = username
+
+        // Column to be used for the query
+        String[] columns = {KEY_USERNAME};
+        // Where portion statement
+        String where = KEY_USERNAME+"="+username;
+
+        // Query for the username, and the results are in a cursor object
+        Cursor cursor = mDb.query(DATABASE_TABLE, columns, where, null, null, null, null);
+
+        // If there is at least one row in the cursor, then the username exists
+        if(cursor.getCount() > 0){
+            return true;
+        }
+        else
+            return false;
+    }
 
 }

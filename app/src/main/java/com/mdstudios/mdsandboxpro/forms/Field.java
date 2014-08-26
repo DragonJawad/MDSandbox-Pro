@@ -11,13 +11,25 @@ import android.widget.EditText;
 public class Field {
     // The editText this field manages
     private EditText mEditText;
+    // Specifies how this field should be validated
     private int mValidationMode;
+    // Holds an optional tag for the field
+    private String mTag;
 
     //--Constructor, set basic values
     public Field(EditText editText, int validationMode){
         // Set passed in values
         this.mEditText = editText;
         this.mValidationMode = validationMode;
+    }
+
+    //--Constructor with optional tag--
+    public Field(EditText editText, int validationMode, String tag){
+        // Call original constructor
+        this(editText, validationMode);
+
+        // Add the optional tag
+        mTag = tag;
     }
 
     //--Displays an error next to an invalid EditText--
@@ -32,5 +44,7 @@ public class Field {
     public int getValidMode(){
         return mValidationMode;
     }
+
+    public String getTag() { return mTag; }
 
 }
