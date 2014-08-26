@@ -65,8 +65,11 @@ public class Form {
     public void invalidateFieldByTag(String tag, String displayError){
         // Search through all the fields for the matching tag
         for(Field field : mFields){
-            // If the tag matches, display the error than break
-            if(field.getTag().equals(tag)){
+            // First get the current field's tag
+            String tagCheck = field.getTag();
+
+            // If the tag matches, then display the error
+            if(tagCheck != null && tagCheck.equals(tag)){
                 field.setError(displayError);
                 break;
             }
