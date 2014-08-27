@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mdstudios.mdsandboxpro.R;
@@ -59,6 +60,14 @@ public class WelcomeHome extends ListActivity {
         Toast.makeText(this,"Making a new user!",Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, NewUser.class);
+        startActivity(intent);
+    }
+
+    //--Handles clicks on listView, selects user and moves to contentHome--
+    @Override
+    public void onListItemClick(ListView listView, View view, int position, long id){
+        // For now, just go to the ContentHome
+        Intent intent = new Intent(this, ContentHome.class);
         startActivity(intent);
     }
 }
