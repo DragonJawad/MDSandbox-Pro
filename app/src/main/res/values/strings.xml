@@ -22,4 +22,8 @@
     <string name="error_invalid_name">Allowed characters: A–Z a–z 0–9 . _ - and space</string>
     <string name="error_invalid_userpass">Allowed characters: A–Z a–z 0–9 . _</string>
     <string name="error_duplicate_username">Sorry, the username is in use</string>
+
+    <!-- Drawer Strings -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

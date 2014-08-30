@@ -2,6 +2,7 @@
 
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -31,26 +32,35 @@
 
         </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/navigation_drawer"
-        android:orientation="vertical"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:padding="8dp"
-        android:background="@color/white"
-        >
-<!--
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test test test inside drawer"/>
--->
-        <ExpandableListView
-            android:id="@+id/lvExp"
+        <LinearLayout
+            android:id="@+id/drawer_container"
+            android:orientation="vertical"
+            android:layout_width="240dp"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
+            android:layout_gravity="start"
+            android:padding="8dp"
+            android:background="@color/white"
+            >
 
-    </LinearLayout>
+            <fragment android:id="@+id/drawer_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.mdstudios.mdsandboxpro.drawer.DrawerControllerFragment"
+                tools:layout="@layout/drawer_controller_fragment" />
+
+            <!--
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test test test inside drawer"/>
+
+            <ExpandableListView
+                android:id="@+id/lvExp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"/>
+                -->
+
+        </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
